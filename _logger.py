@@ -4,7 +4,7 @@ import os
 
 
 class CustomLogger():
-
+    
     def __init__(self, path_to_folder: str = None) -> None:
         self.log = logging.getLogger(__name__)
         self.log.setLevel(logging.DEBUG)
@@ -31,7 +31,6 @@ class CustomLogger():
     def _check_folder_for_log_file(self) -> None:
         if not os.path.exists(self.path_to_folder):
             os.mkdir(self.path_to_folder)
-    
 
     def start_initialization(self):
         self._check_folder_for_log_file()
