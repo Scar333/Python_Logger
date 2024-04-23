@@ -19,15 +19,16 @@ class CustomLogger():
         self.log = logging.getLogger(__name__)
         self.log.setLevel(logging.DEBUG)
 
-        self.formatter = logging.Formatter('%(asctime)s - [%(levelname)s] - [%(filename)s] - %(funcName)s: (%(lineno)d) - %(message)s')
+        self.file_formatter = logging.Formatter('%(asctime)s - [%(levelname)s] - [%(filename)s] - %(funcName)s: (%(lineno)d) - %(message)s')
+        self.console_formatter = logging.Formatter('[%(asctime)s] - %(message)s')
 
         self.file_handler = logging.FileHandler(self.file_path)
         self.file_handler.setLevel(logging.DEBUG)
-        self.file_handler.setFormatter(self.formatter)
+        self.file_handler.setFormatter(self.file_formatter)
 
         self.console_handler = logging.StreamHandler()
         self.console_handler.setLevel(logging.DEBUG)
-        self.console_handler.setFormatter(self.formatter)
+        self.console_handler.setFormatter(self.console_formatter)
 
         self.log.addHandler(self.file_handler)
         self.log.addHandler(self.console_handler)
