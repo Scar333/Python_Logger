@@ -3,7 +3,7 @@ import logging
 import os
 
 
-class CustomLogger():
+class CustomLogger:
 
     def __init__(self, path_to_folder: str = None) -> None:
         self.name_folder = 'Log'
@@ -22,7 +22,7 @@ class CustomLogger():
         self.file_formatter = logging.Formatter('%(asctime)s - [%(levelname)s] - [%(filename)s] - %(funcName)s: (%(lineno)d) - %(message)s')
         self.console_formatter = logging.Formatter('[%(asctime)s] - %(message)s')
 
-        self.file_handler = logging.FileHandler(self.file_path)
+        self.file_handler = logging.FileHandler(self.file_path, encoding='UTF-8')
         self.file_handler.setLevel(logging.DEBUG)
         self.file_handler.setFormatter(self.file_formatter)
 
@@ -41,4 +41,4 @@ class CustomLogger():
         return self.log
 
 
-log = CustomLogger(path_to_folder=r'path_to_folder').start_initialization()
+log = CustomLogger().start_initialization()
