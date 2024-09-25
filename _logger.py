@@ -5,6 +5,8 @@ from datetime import datetime
 
 
 class CustomLogger:
+    """Кастомный логгер"""
+    
     def __init__(self, path_to_folder: str = None, flow: bool = None, console_output: bool = True) -> None:
         """
         Инициализация параметров
@@ -51,7 +53,7 @@ class CustomLogger:
         if not os.path.exists(self.path_to_folder):
             os.makedirs(self.path_to_folder, exist_ok=True)
 
-    def _setting_for_log_formatter_file(self):
+    def _setting_for_log_formatter_file(self) -> object:
         """Настройка для формата записи файла *.log"""
         file_formatter = logging.Formatter('%(asctime)s - [%(levelname)s] - [%(filename)s] - %(funcName)s: (%(lineno)d) - %(message)s')
         file_handler = logging.FileHandler(self.path_to_file, encoding='UTF-8')
@@ -59,7 +61,7 @@ class CustomLogger:
 
         return file_handler
         
-    def _setting_for_log_formatter_console(self):
+    def _setting_for_log_formatter_console(self) -> object:
         """Настройка для вывода данных в консоль"""
         console_formatter = logging.Formatter('[%(asctime)s] - %(message)s')
         console_handler = logging.StreamHandler()
@@ -67,7 +69,7 @@ class CustomLogger:
 
         return console_handler
         
-    def close_logger(self):
+    def close_logger(self) -> None:
         """Общее закрытие обработчиков (файл, консоль) и удаление их из логгера"""
         self.file_handler.close()
         self.log.removeHandler(self.file_handler)
@@ -76,6 +78,10 @@ class CustomLogger:
             self.console_handler.close()
             self.log.removeHandler(self.console_handler)
 
-    def start_initialization(self):
+    def get_path_to_file_log(self) -> str:
+        """Возвращает полный путь до файла логгера"""
+        return self.path_to_file
+
+    def start_initialization(self) -> object:
         """Запусе логгера"""
         return self.log
