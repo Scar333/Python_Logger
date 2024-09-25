@@ -35,7 +35,7 @@ class CustomLogger:
 
     def _check_folder_for_log_file(self) -> None:
         if not os.path.exists(self.path_to_folder):
-            os.mkdir(self.path_to_folder)
+            os.makedirs(self.path_to_folder, exist_ok=True)
 
     def start_initialization(self):
         return self.log
